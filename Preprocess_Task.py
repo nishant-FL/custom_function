@@ -1,19 +1,26 @@
 class Preprocess_Task:
     def __init__(self):
-        print ("")
+        
+        self.get_script = "---copy script below---\n"
+        
     def missing_values_chk(self):
         data = input("dataframe: ")
-        print ("--------copy script below------------")
+        
+        print(self.get_script)
+        
         step1 = f"# find cols with sum of missing value in {data}"
         print (step1)
         
         print(f"for col in {data}.columns:")
         print(f"\tif {data}[col].isnull().sum()> 0:")
-        print(f"\t print(col, {data}[col].isnull().sum())")
+        print(f"\t print(col,{data}[col].dtype,{data}[col].isnull().sum(),np.round({data}[col].isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
+        print(f"print('total missing values: ', np.round({data}.isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
         
     def train_test_split(self):
         test_size = input("test_size: ") + " \n"
         stratify = input("stratify = None , y: ")
+        
+        print(self.get_script)
         
         step1 = f"# module import  for train_test_split"
         print(step1 + f" with test size = {test_size}")
@@ -36,6 +43,8 @@ class Preprocess_Task:
         scaler = input("create scaler as:")
         data = input("create numeric_dataframe as:")
         scaled_data = input("create scaled_data as:")
+        
+        print(self.get_script)
         
         step1 = "# module import  for to standardise data"
         print (step1)
@@ -64,9 +73,45 @@ class Preprocess_Task:
         col_list = input("column names:")
         dtype = input("'object'/'int64'/'float64'/'bool'/'datetime64'/'timedelta[ns]'/'category'")
         
+        print(self.get_script)
+        
         step1 = f"# chage data type of {col_list} to {dtype}"
         print (step1)
         
         print (f"for col in[{col_list}]",":")
         print (f"\t{data}[col] = {data}[col].astype({dtype})")
         print (f"assert {data}.loc[:,[{col_list}]].dtypes.values.all() == {dtype}")
+        
+    def explore(self):
+        data = input("dtaframe name: ")
+        top = input ("top n rows: ")
+        last = input ("bottom n rows: ")
+        
+        
+        print(self.get_script)
+        
+        step1 = f"# column names in {data}"
+        print (step1)
+        print (f"{data}.columns\n")
+        
+        step2 = f"# top {top} rows of {data}"
+        print(step2)
+        print(f"{data}.head({top})\n")
+        
+        step3 = f"# top {last} rows of {data}"
+        print(step3)
+        print(f"{data}.tail({top})\n")
+        
+        step4 = f"# data type of colums in {data}"
+        print(step4)
+        print (f"{data}.info()\n")
+        
+        step5 = f"# colunwise unique values in {data}"
+        print(step5)
+        print(f"{data}.nunique()\n")
+        
+        step6 = f"# summary statistic for {data}"
+        print(step6)
+        print(f"{data}.describe(percentiles = [.5,.25, .5, .75,.95],include= 'all')")
+        
+        
