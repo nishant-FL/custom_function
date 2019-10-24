@@ -1,6 +1,5 @@
 class Preprocess_Task:
     def __init__(self):
-        
         self.get_script = "---copy script below---\n"
         
     def missing_values_chk(self):
@@ -16,6 +15,82 @@ class Preprocess_Task:
         print(f"\t print(col,{data}[col].dtype,{data}[col].isnull().sum(),np.round({data}[col].isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
         print(f"print('total missing values: ', np.round({data}.isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
         
+    
+    def normalize(self):
+        data = input("Dataframe Name: ")
+        scaler = input("\nName of the scaler/normalizer: ")
+        scaled_data = input("\nName of the scaled output: ")        
+        
+        print(self.get_script)
+        
+        step1 = "# Import module to scale the data"
+        print(step1)
+        
+        module_import = "from sklearn.preprocessing import MinMaxScaler" 
+        print (module_import + "\n")
+        
+        step2 = "# Initialize the scaler for normalizing the data "
+        print (step2)
+        model_initalise = f"{scaler} = MinMaxScaler()"
+        print (model_initalise + "\n")
+        
+        step3 = f"# Create object of numeric data to fit {scaler}" 
+        print (step3)
+        print (f"{data} = ...\n")
+        
+        step4 = f"# fit {scaler} object on {data}" 
+        print(step4)
+        print (f"{scaler}.fit({data})\n")
+        
+        step5 = f"# transform {data} using {scaler} and save to object {scaled_data}"
+        print(step5)
+        print(f"{scaled_data} = {scaler}.transform({data})")
+    
+    def cv(self):
+        data = input("Predictors Name: ")
+        target = input("Target: ")
+        scaler = input("Input type of Problem: Regression = R, Classification = C")
+        no_cv = input("k-folds, k = ")
+
+        from sklearn.metrics import SCORERS
+        list(SCORERS.keys())
+        reg_scorers = ['r2', 'neg_median_absolute_error', 'neg_mean_absolute_error', 'neg_mean_squared_error',
+         'neg_mean_squared_log_error', 'explained_variance']
+        class_scorers = ['precision', 'recall', 'f1', 'accuracy', 'roc_auc']
+
+        step2 = "Get scorers to cross validate on. Please separate scorers by a comma only. "
+        print (step2)    
+        if scaler == "R":
+            metrics = input(", ".join(reg_scorers))
+        elif scaler == "C":
+            metrics = input(", ".join(class_scorers))
+        scorers = [i.strip() for i in metrics.split(",")]
+
+        print(self.get_script)
+        print("\n_____________Copy from Here_____________\n")  
+        step1 = "# Import module to cross-validate"
+        print(step1)
+
+        module_import = "from sklearn.model_selection import cross_validate" 
+        print (module_import + "\n")
+
+        step3 = f"#Create base model to cross validate " 
+        print (step3)
+        print (f"model = ...\n")
+
+        step4 = f"#Define the scorers to validate on"
+        print (step4)
+        print (f"scorers = {scorers}")
+
+        step4 = f"#Cross validate model on {data}" 
+        print(step4)
+        print (f"scores = cross_validate(model, X = {data}, y = {target}, scoring = scorers)\n", cv = no_cv)
+
+        step5 = f"#Check performance on {data}"
+        print(step5)
+        str=r"print(f'Performance : { scores }')"
+        print(str)
+   
     def train_test_split(self):
         test_size = input("test_size: ") + " \n"
         stratify = input("stratify = None , y: ")
@@ -112,6 +187,4 @@ class Preprocess_Task:
         
         step6 = f"# summary statistic for {data}"
         print(step6)
-        print(f"{data}.describe(percentiles = [.5,.25, .5, .75,.95],include= 'all')")
-        
-        
+        print(f"{data}.describe(percentiles = [0.05 ,.25, .5, .75,.95],include= 'all')")
