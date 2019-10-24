@@ -1,0 +1,10 @@
+def age_imp(dataframe,colname="Age"):
+    age_dict
+    #print(age_dict)
+    dataframe[colname] = dataframe[colname].fillna(dataframe['salutation'].map(age_dict))
+#   dataframe[[dataframe.isnull()]] = dataframe["salutation"].apply(lambda x: age_dict[x])
+    assert dataframe[colname].isnull().sum() == 0
+    
+    def add_salutaion(dataframe,colname = "Name"):
+    dataframe["salutation"] = dataframe[colname].str.findall(r'(Mrs|Ms|Mlle|Mme|Major|Capt|Countess|Mr|Miss|Master|Col|Rev|Dr|Don|Jonkheer)').apply(lambda x:x[0])
+    return dataframe.head()
