@@ -2,7 +2,7 @@ class Log_Regr(object):
     def __init__(self):
         self.greet = "You have selected and initialized the Logistic Regression Class\n"
         print (self.greet)
-        
+
     def log_regr_(self, model_name, modeltype):
         df_X = input("Your Training DataFrame with only features (X): ")
         df_Y = input("Your Training DataFrame with only Labels (Y): ")
@@ -14,7 +14,7 @@ class Log_Regr(object):
         print(f"from sklearn.model_selection import GridSearchCV")
         print()
         print(f"# Create an instance / initialize the model")
-        print(f"{model_name} = LogisticRegression(solver='lbfgs', n_jobs=2, random_state=351)")
+        print(f"{model_name} = LogisticRegression(n_jobs=2, random_state=351)")
         print()
         print(f"# Most important tunable parameters for {modeltype}:")
         print(f"# C='Default Value is 1.0. Inverse of regularization strength; must be a positive float'")
