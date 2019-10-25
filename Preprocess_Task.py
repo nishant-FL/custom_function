@@ -157,6 +157,9 @@ class Preprocess_Task:
         print (f"\t{data}[col] = {data}[col].astype({dtype})")
         print (f"assert {data}.loc[:,[{col_list}]].dtypes.values.all() == {dtype}")
         
+    
+    
+    
     def explore(self):
         data = input("dtaframe name: ")
         top = input ("top n rows: ")
@@ -188,3 +191,26 @@ class Preprocess_Task:
         step6 = f"# summary statistic for {data}"
         print(step6)
         print(f"{data}.describe(percentiles = [0.05 ,.25, .5, .75,.95],include= 'all')")
+    
+    def simple_imputation():
+        
+        data = input("input data:")
+        strategy = input("strategy ='mean', median','most_frequent', 'constant':")
+        imputer = input("create imputer as:")
+        
+        print (self.getscript)
+        step1 =f"# module import for imputation"
+        print (step1)
+        print("from sklearn.impute import SimpleImputer\n")
+
+        step2 = (f"# create imputer as {imputer}")
+        print(step2)
+        print(f"{imputer} = SimpleImputer(strategy = {strategy})\n")
+
+        step3 = f"# fit the imputer on {data}"
+        print(step3)
+        print(f"{imputer}.fit({data})\n")
+
+        step4 = f"# transform na values in {data} with {strategy} using {imputer} and assign back to {data}"
+        print (step4)
+        print (f"{data} = {imputer}.transform({data})\n")
