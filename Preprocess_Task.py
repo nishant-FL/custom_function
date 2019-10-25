@@ -191,14 +191,14 @@ class Preprocess_Task:
         step6 = f"# summary statistic for {data}"
         print(step6)
         print(f"{data}.describe(percentiles = [0.05 ,.25, .5, .75,.95],include= 'all')")
-    
+
     def simple_imputation():
-        
         data = input("input data:")
         strategy = input("strategy ='mean', median','most_frequent', 'constant':")
         imputer = input("create imputer as:")
         
-        print (self.getscript)
+        print(self.get_script)
+
         step1 =f"# module import for imputation"
         print (step1)
         print("from sklearn.impute import SimpleImputer\n")
