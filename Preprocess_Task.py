@@ -192,7 +192,7 @@ class Preprocess_Task:
         print(step6)
         print(f"{data}.describe(percentiles = [0.05 ,.25, .5, .75,.95],include= 'all')")
 
-    def simple_imputation():
+    def simple_imputation(self):
         data = input("input data:")
         strategy = input("strategy ='mean', median','most_frequent', 'constant':")
         imputer = input("create imputer as:")
