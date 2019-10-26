@@ -215,7 +215,7 @@ class Preprocess_Task:
         print (step4)
         print (f"{data} = {imputer}.transform({data})\n")
         
-    def onehot():
+    def onehot(self):
         data    = input ("data: ")
         encoder = input ("create encoder as: ")
         unknown = input ("handle_unknown = 'error','ignore': ")
