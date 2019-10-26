@@ -13,7 +13,7 @@ class Preprocess_Task:
         print(f"for col in {data}.columns:")
         print(f"\tif {data}[col].isnull().sum()> 0:")
         print(f"\t print(col,{data}[col].dtype,{data}[col].isnull().sum(),np.round({data}[col].isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
-        print(f"print('total missing values: ', np.round({data}.isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
+        print(f"print('total missing values: ', np.round({data}.isnull().sum().sum()/{data}.size*100,2),'%')")
         
     
     def normalize(self):
