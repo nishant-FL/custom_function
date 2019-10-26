@@ -214,3 +214,32 @@ class Preprocess_Task:
         step4 = f"# transform na values in {data} with {strategy} using {imputer} and assign back to {data}"
         print (step4)
         print (f"{data} = {imputer}.transform({data})\n")
+        
+    def onehot():
+        data    = input ("data: ")
+        encoder = input ("create encoder as: ")
+        unknown = input ("handle_unknown = 'error','ignore': ")
+        drop    = input ("drop = 'first', None: " ) 
+
+        print(self.get_script)
+
+        step1 = "# import sklearn module for one-hot encoding"
+        print (step1)
+        print ("from sklearn.preprocessing import OneHotEncoder\n")
+
+        step2 = f"# intalize encoder as {encoder}"
+        print (step2)
+        print (f"{encoder} = OneHotEncoder(handle_unknown = {unknown}, drop = {drop})\n")
+
+        step3 = f"# fit {encoder} on {data}"
+        print (step3)
+        print (f"{encoder}.fit({data})\n")
+
+        step4 = f" # transform {data} using {encoder}"
+        print (step4)
+        print (f"{encoder}.transform({data})\n")
+
+        step5 = f"# column of transformed data using {encoder}"
+        print (step5)
+        print (f"{encoder}.get_feature_names()")
+
