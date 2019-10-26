@@ -239,7 +239,7 @@ class Preprocess_Task:
         print (step4)
         print (f"{encoder}.transform({data})\n")
 
-        step5 = f"# column of transformed data using {encoder}"
+        step5 = f"# columns of transformed data using {encoder}"
         print (step5)
         print (f"{encoder}.get_feature_names()")
 
