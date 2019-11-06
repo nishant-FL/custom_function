@@ -242,4 +242,30 @@ class Preprocess_Task:
         step5 = f"# columns of transformed data using {encoder}"
         print (step5)
         print (f"{encoder}.get_feature_names()")
+        
+        def pickel_save(self):
+            data =  input ("object name: ")
+            filename = input("save file as: .pickel")
+
+            # Step1 : import pickel module
+            import pickle
+            import os as os
+
+            # Step2 : open an empty pickel file to write to
+            pickel_out = open(filename,'wb')
+
+            # Step3: save the oject in the current working directory
+            pickle.dump(obj = data, file = pickel_out)
+
+            # Step 4: close the pickel file
+            pickel_out.close()
+
+            # Step 5: check for file creation
+            assert filename in os.listdir()
+
+            # Step 6: display file location
+            print (f"{filename}:",os.getcwd())
+
+        
+    
 
