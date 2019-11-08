@@ -269,5 +269,10 @@ class Preprocess_Task:
 
             # Step 6: display file location
             print (f"{filename}:",os.getcwd())
+        
+        def pickel_read(self,filename):
+            import pickle
+            file = f"{filename}.pickle"
+            return pickle.load(open(file,'rb'))
 
 
