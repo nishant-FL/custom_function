@@ -269,6 +269,5 @@ class Preprocess_Task:
 
             # Step 6: display file location
             print (f"{filename}:",os.getcwd())
-        
-    
+
 
