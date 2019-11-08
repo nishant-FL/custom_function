@@ -139,21 +139,18 @@ class Preprocess_Task:
         print(step5)
         print(f"{scaled_data} = {scaler}.transform({data})")
     
-    def dtypes_change(self):
-        data = input("dataframe name: ")
-        col_list = input("column names:")
-        dtype = input("'object'/'int64'/'float64'/'bool'/'datetime64'/'timedelta[ns]'/'category'")
-        
-        print(self.get_script)
-        
-        step1 = f"# chage data type of {col_list} to {dtype}"
-        print (step1)
-        
-        print (f"for col in[{col_list}]",":")
-        print (f"\t{data}[col] = {data}[col].astype({dtype})")
-        print (f"assert {data}.loc[:,[{col_list}]].dtypes.values.all() == {dtype}")
-        
-    
+    def dtypes_change(self,data, columns ,dtype):
+        """
+        data = pandas dataframe
+        columns = list type object
+        dtype = 
+        ` 'object'/'int64'/'float64'/'bool'/
+        ` 'datetime64'/'timedelta[ns]'/'category'
+        """
+        for col in columns :
+            data[col] = data[col].astype(dtype)
+        assert data.loc[:,columns].dtypes.values.all() == dtype
+        print (data.loc[:,columns].dtypes)
     
     
     def explore(self):
