@@ -2,22 +2,14 @@ class Preprocess_Task:
     def __init__(self):
         self.get_script = "---copy script below---\n"
         
-    def missing_values_chk(self):
+    def missing_values_chk(self, data):
         """
-        returns a for loop to check for colums with missing value, data type , % of missing value
-
-        """
-        data = input("dataframe: ")
-
-        print(self.get_script)
-
-        step1 = f"# find cols with sum of missing value in {data}"
-        print (step1)
-
-        print(f"for col in {data}.columns:")
-        print(f"\tif {data}[col].isnull().sum()> 0:")
-        print(f"\t print(col,{data}[col].dtype,{data}[col].isnull().sum(),np.round({data}[col].isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
-        print(f"print('total missing values: ',np.round({data}.isnull().sum().sum()) , np.round({data}.isnull().sum().sum()/{data}.shape[0]*100,2),'%')")
+        column | dtype | missing value count | % 
+        """   
+        for col in data.columns:
+            if data[col].isnull().sum()> 0:
+                print(col,data[col].dtype,data[col].isnull().sum(),np.round(data[col].isnull().sum().sum()/data.shape[0]*100,2),'%')
+        print('total missing values: ',np.round(data.isnull().sum().sum()) , np.round(data.isnull().sum().sum()/data.shape[0]*100,2),'%')
         
     
     def normalize(self):
